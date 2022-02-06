@@ -18,15 +18,19 @@
         <button id="save">メールアドレスを保存する</button>
         <!-- ここに、JavaScriptを記述します -->
         <script>
+          const getCookie = (key) => {
+            let k = document.cookie.split("=");
+            if (k[0] === key) {
+              return decodeURIComponent(k[1]);
+            }
+          };
           document.getElementById("save").addEventListener("click", () => {
             let email = encodeURIComponent(
               document.getElementById("email").value
             );
-            document.cookie =
-              "email=" +
-              email +
-              "; max-age=3600; path=/sample31; domain=127.0.0.1:5500; secure=true";
+            document.cookie = "email=" + email + "; max-age=3600;";
           });
+          document.getElementById("email").value = getCookie("email");
         </script>
       </div>
     </div>
