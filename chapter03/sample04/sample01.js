@@ -1,4 +1,4 @@
 "use strict";
-let color;
+var color;
 color = "赤";
 // color = "黒"

@@ -1,6 +1,6 @@
 "use strict";
-class Item {
-    constructor(price, tax) {
+var Item = /** @class */ (function () {
+    function Item(price, tax) {
         if (tax) {
             this.tax = tax;
         }
@@ -14,10 +14,11 @@ class Item {
             this.price = 0;
         }
     }
-    getTax() {
+    Item.prototype.getTax = function () {
         return Math.round(this.price * (this.tax / 100));
-    }
-}
-let apple = new Item(180);
+    };
+    return Item;
+}());
+var apple = new Item(180);
 console.log(apple.tax);
 console.log(apple.getTax());

@@ -1,6 +1,6 @@
 "use strict";
-const sum = (a, b) => {
+var sum = function (a, b) {
     return a * b;
 };
-let answer = sum(5, 2);
+var answer = sum(5, 2);
 console.log(answer);

@@ -1,5 +1,5 @@
 "use strict";
-let myName = "てけ";
-let height = 168;
+var myName = "てけ";
+var height = 168;
 // myName = 10
 // height = "てけ"
