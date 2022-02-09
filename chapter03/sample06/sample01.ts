@@ -1,5 +1,6 @@
 class Book {
   private _name: string = "";
+  readonly code: string = "1234567";
 
   set name(value: string) {
     if (value === "") {
@@ -16,3 +17,5 @@ class Book {
 let myBook: Book = new Book();
 myBook.name = "JavaScript入門";
 console.log(myBook.name);
+
+console.log(myBook.code);
