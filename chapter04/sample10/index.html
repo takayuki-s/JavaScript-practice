@@ -14,6 +14,7 @@
       <div class="frame__inner">
         <div id="app">
           <clock></clock>
+          <clock style="color: blue">現在時刻</clock>
         </div>
         <!-- ここに、JavaScriptを記述します -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -33,7 +34,8 @@
                 this.time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
               },
             },
-            template: "<div>{{ time }}</div>",
+            template:
+              "<div v-bind:style=''><h2><slot>時計</slot></h2>{{ time }}</div>",
           });
           let app = new Vue({
             el: "#app",
