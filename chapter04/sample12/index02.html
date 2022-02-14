@@ -17,7 +17,7 @@
           +
           <input type="number" name="num2" v-model.number="num2" />
           =
-          <span>{{ answer }}</span>
+          <span v-if="done">{{ answer }}</span>
         </div>
         <!-- ここに、JavaScriptを記述します -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -31,6 +31,9 @@
             computed: {
               answer() {
                 return this.num1 + this.num2;
+              },
+              done() {
+                return this.num1 !== 0 && this.num2 !== 0;
               },
             },
           });
