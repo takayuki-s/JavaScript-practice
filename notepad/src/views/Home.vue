@@ -12,7 +12,7 @@ export default {
   name: 'Home',
   computed: {
     newest() {
-      return this.$store.state.memos
+      return this.$store.state.memos.slice().reverse()
     }
   }
 }
