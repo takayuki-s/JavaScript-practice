@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <ul v-for="memo in newest" :key="memo.id">
-      <li>{{ memo.body }}</li>
+      <li><router-link :to="{name: 'Edit', params: {id: memo.id}}">{{ memo.body }}</router-link></li>
     </ul>
   </div>
 </template>
