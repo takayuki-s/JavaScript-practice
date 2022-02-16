@@ -1,16 +1,15 @@
 // vue 2
-import Vue from "vue";
-import Vuex from "vuex";
+// import Vue from "vue";
+// import Vuex from "vuex";
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    memos: [{ id: 1, body: "サンプルのメモです" }],
-  },
-});
+// export default new Vuex.Store({
+//   state: {
+//     memos: [{ id: 1, body: "サンプル" }],
+//   },
+// });
 
-//vue3
 import { createStore } from "vuex";
 
 export const store = createStore({
