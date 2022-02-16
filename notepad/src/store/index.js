@@ -16,4 +16,13 @@ export const store = createStore({
   state: {
     memos: [{ id: 1, body: "サンプルのメモです" }],
   },
+  mutations: {
+    save(state, memo) {
+      // 新しいidを割り振る
+      let max = state.memos[state.memos.length - 1].id;
+      memo.id = max + 1;
+
+      state.memos.push(memo);
+    },
+  },
 });
