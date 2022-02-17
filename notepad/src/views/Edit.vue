@@ -1,14 +1,18 @@
 <template>
   <div class="editor">
-    <h1>Edit Memo</h1>
+    <Header>Edit Memo</Header>
     <textarea name="memo" v-model="memoBody"></textarea>
     <button v-on:click="save">保存</button>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue"
 export default {
   name: "edit",
+  components: {
+    Header
+  },
   data() {
     return {
       memoBody: ""
