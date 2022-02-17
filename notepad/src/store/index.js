@@ -24,5 +24,9 @@ export const store = createStore({
 
       state.memos.push(memo);
     },
+    update(state, data) {
+      let x = state.memos.find((memo) => memo.id == data.id);
+      x.body = data.body;
+    },
   },
 });
