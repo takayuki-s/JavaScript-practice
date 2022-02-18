@@ -11,8 +11,10 @@
 // });
 
 import { createStore } from "vuex";
+import createdPersistedState from "vuex-persistedstate";
 
 export const store = createStore({
+  plugins: [createdPersistedState()],
   state: {
     memos: [{ id: 1, body: "サンプルのメモです" }],
   },
