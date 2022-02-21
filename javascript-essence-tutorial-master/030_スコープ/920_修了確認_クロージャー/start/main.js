@@ -16,30 +16,61 @@
  * ※四則演算は"+","-","*","/"を数値ではさんで計算を行います。
  */
 
-function calcFactory(num) {
-  function calc(method, value) {
-    if (method === "plus") {
-      return num + value;
-    }
-    if (method === "minus") {
-      return num - value;
-    }
-    if (method === "multiply") {
-      return num * value;
-    }
-    if (method === "divide") {
-      return num / value;
-    }
-  }
-  return calc;
+function calcFactory(val) {
+  return {
+    plus: function (target) {
+      const newVal = val + target;
+      console.log(val + " + " + target + " = " + newVal);
+      val = newVal; //レキシカルスコープを通して変数を渡す
+    },
+    minus: function (target) {
+      const newVal = val - target;
+      console.log(val + " - " + target + " = " + newVal);
+      val = newVal;
+    },
+    multiply: function (target) {
+      const newVal = val * target;
+      console.log(val + " × " + target + " = " + newVal);
+      val = newVal;
+    },
+    divide: function (target) {
+      const newVal = val / target;
+      console.log(val + " ÷ " + target + " = " + newVal);
+      val = newVal;
+    },
+  };
 }
 
 const calc = calcFactory(10);
-const result1 = calc("plus", 5);
-console.log(result1);
-const result2 = calc("minus", 3);
-console.log(result2);
-const result3 = calc("multiply", 3);
-console.log(result1);
-const result4 = calc("divide", 2);
-console.log(result4);
+calc.plus(5);
+calc.minus(3);
+calc.multiply(3);
+calc.divide(2);
+
+// function calcFactory(num) {
+//   function calc(method, value) {
+//     if (method === "plus") {
+//       return num + value;
+//     }
+//     if (method === "minus") {
+//       return num - value;
+//     }
+//     if (method === "multiply") {
+//       return num * value;
+//     }
+//     if (method === "divide") {
+//       return num / value;
+//     }
+//   }
+//   return calc;
+// }
+
+// const calc = calcFactory(10);
+// const result1 = calc("plus", 5);
+// console.log(result1);
+// const result2 = calc("minus", 3);
+// console.log(result2);
+// const result3 = calc("multiply", 3);
+// console.log(result1);
+// const result4 = calc("divide", 2);
+// console.log(result4);
