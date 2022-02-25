@@ -65,4 +65,4 @@ function through(obj) {
 }
 
 const obj2 = through(obj);
-console.log(obj === obj2); // false
+console.log(obj === obj2); // true 同じ参照先となるから
