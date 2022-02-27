@@ -21,3 +21,17 @@ function c() {
   d();
 }
 c();
+
+window.name = "グローバルてけ";
+
+const Greeting = {
+  name: "オブジェクトてけ",
+  // 無名関数
+  sayHello: function () {
+    console.log(`Hello ${this.name}`);
+  },
+  sayBye: () => console.log(`Bye ${this.name}`),
+};
+
+Greeting.sayHello(); // Hello オブジェクトてけ
+Greeting.sayBye(); // Bye グローバルてけ
