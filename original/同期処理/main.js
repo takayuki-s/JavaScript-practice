@@ -3,6 +3,11 @@ const fn1 = () => {
   task(2);
   task(3);
 };
+const fn2 = () => {
+  task(4);
+  task(5);
+  task(6);
+};
 
 const task = (order) => {
   console.log(`task ${order} の処理を開始`);
@@ -12,3 +17,4 @@ const task = (order) => {
 };
 
 fn1();
+fn2();
