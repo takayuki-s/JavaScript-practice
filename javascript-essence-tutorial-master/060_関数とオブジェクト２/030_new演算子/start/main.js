@@ -17,3 +17,14 @@ console.log(instanceF); // 空のオブジェクトが返ってくる
 
 const instanceFF = new FF(1, 2);
 console.log(instanceFF); // thisにaとbを持ったオブジェクトが返ってくる
+
+function newOpe(C, ...args) {
+  // 引数で渡ってきたものをargsという配列に入れる（引数の数が変わる時などに活用）
+  const _this = Object.create(C.prototype);
+  const result = C.apply(_this, args);
+  console.log(result);
+  console.log(_this);
+  return _this;
+}
+const newInstance = newOpe(FF, 1, 2);
+console.log(newInstance);
