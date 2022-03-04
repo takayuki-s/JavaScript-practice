@@ -24,7 +24,13 @@ function newOpe(C, ...args) {
   const result = C.apply(_this, args);
   console.log(result);
   console.log(_this);
+  if (typeof result === "object" && result !== null) {
+    return result;
+  }
   return _this;
 }
 const newInstance = newOpe(FF, 1, 2);
 console.log(newInstance);
+
+const newInstanceInObj = newOpe(F, 1, 2);
+console.log(newInstanceInObj);
