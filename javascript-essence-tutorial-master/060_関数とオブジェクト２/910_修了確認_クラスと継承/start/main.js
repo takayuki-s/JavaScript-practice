@@ -44,18 +44,37 @@
  */
 
 class User {
-  constructor(name, roll, path) {
-    name = this.name;
-    roll = this.roll;
-    path = this.pass;
+  constructor(name) {
+    this.name = name;
+    this.redirectTo = "/";
+  }
+
+  login() {
+    console.log(`User : ${this.name}`);
+    return true;
+  }
+  checkRoll() {
+    console.log("you have normal roll");
+    return true;
+  }
+  redirect() {
+    console.log(`redirect : ${this.redirectTo}`);
+    return true;
   }
 }
 
 class AdminUser extends User {
-  constructor(name, roll, path) {
+  constructor(name) {
     super(name);
-    roll = "admin roll";
-    path = "/admin";
+    this.redirectTo = "/admin";
+  }
+  checkRoll() {
+    console.log("you have admin roll");
+    return true;
+  }
+  redirect() {
+    console.log(`redirect : ${this.redirectTo}`);
+    return true;
   }
 }
 
@@ -66,3 +85,6 @@ function loginController(user) {
     console.log("login failed");
   }
 }
+
+loginController(new User("Bob"));
+// loginController(new AdminUser("Bob"));
