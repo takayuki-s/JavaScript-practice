@@ -22,25 +22,28 @@
 //   }, val);
 // }, 0);
 
-// function fn1(val) {
-//   setTimeout(function () {
-//     console.log(val++);
-//     fn2(val);
-//   }, 1000);
-// }
-// function fn2(val) {
-//   setTimeout(function () {
-//     console.log(val++);
-//     fn3(val);
-//   }, 1000);
-// }
-// function fn3(val) {
-//   setTimeout(function () {
-//     console.log(val++);
-//   }, 1000);
-// }
+function fn1(val) {
+  setTimeout(function () {
+    console.log(val++); // 1
+    fn2(val);
+    console.log("fn1 done " + val); // fn2の処理を待たない
+  }, 1000);
+}
+function fn2(val) {
+  setTimeout(function () {
+    console.log(val++); // 2
+    fn3(val);
+    console.log("fn2 done " + val); // fn3の処理を待たない
+  }, 1000);
+}
+function fn3(val) {
+  setTimeout(function () {
+    console.log(val++); // 3
+    console.log("fn3 done " + val);
+  }, 1000);
+}
 
-// fn1(0);
+fn1(0);
 // console.log("hello");
 
 // function ask(question, yes, no) {
@@ -48,15 +51,15 @@
 //   else showCancel();
 // }
 
-function showMessage(callback) {
-  const messageText = "showMessage Text";
-  callback(messageText);
-  showOk(messageText);
-}
+// function showMessage(callback) {
+//   const messageText = "showMessage Text";
+//   callback(messageText);
+//   showOk(messageText);
+// }
 
-function showOk(messageText) {
-  alert(messageText);
-}
+// function showOk(messageText) {
+//   alert(messageText);
+// }
 
-// 使用法: 関数 showOk, showCancel は ask の引数として渡されます
-showMessage(showOk);
+// // 使用法: 関数 showOk, showCancel は ask の引数として渡されます
+// showMessage(showOk);
