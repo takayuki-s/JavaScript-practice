@@ -15,8 +15,7 @@ sleep(0)
     return sleep(val);
   })
   .then(function (val) {
-    sleep(val);
-    return val;
+    return sleep(val);
   })
   .then(function (val) {
     return sleep(val);
