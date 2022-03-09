@@ -17,6 +17,11 @@ new Promise(function promise(resolve) {
     queueMicrotask(function job5() {
       console.log("job5");
     });
+    // 上記queueMicrotaskと同じ処理をPromiseを使って記述するとこうなる
+    const p = Promise.resolve();
+    p.then(function job5copy() {
+      console.log("job5copy");
+    });
   })
   .then(function job2() {
     console.log("job2");
