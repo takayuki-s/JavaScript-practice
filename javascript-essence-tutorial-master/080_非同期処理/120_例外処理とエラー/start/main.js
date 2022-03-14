@@ -3,9 +3,16 @@ async function fetchUsers() {
   if (response.ok) {
     const json = await response.json();
     if (!json.length) {
-      throw new Error("no data found");
+      throw new NoDataError("no data found");
     }
     return json;
+  }
+}
+
+class NoDataError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NoDataError";
   }
 }
 
@@ -16,9 +23,14 @@ async function init() {
       console.log(`I'm ${user.name}, ${user.age} years old`);
     }
   } catch (e) {
-    console.error(e);
+    if (e instanceof NoDataError) {
+      console.log(e);
+    } else {
+      console.error("Oops, something went wrong");
+    }
   } finally {
     console.log("bye");
   }
+  console.log("end"); // tyr catchでハンドリングを行わないと、こちらは実行されない
 }
 init();
