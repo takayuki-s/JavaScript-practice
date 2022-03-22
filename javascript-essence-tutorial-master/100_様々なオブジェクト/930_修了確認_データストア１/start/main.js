@@ -16,19 +16,27 @@
  */
 const KEY = "test-data";
 
-function getLocal(KEY) {
-  const result = localStorage.getItem(KEY);
-  return JSON.parse(result);
+class DataSource {
+  static getLocal(KEY) {
+    console.log("get from local");
+    const result = localStorage.getItem(KEY);
+    return JSON.parse(result);
+  }
+
+  static setLocal(KEY, target) {
+    console.log("set to local");
+    const json = JSON.stringify(target);
+    localStorage.setItem(KEY, json);
+  }
 }
 
-const targetObj = getLocal(KEY) || {};
+const targetObj = DataSource.getLocal(KEY) || {};
 
 const pxy = new Proxy(targetObj, {
   set(target, prop, value, receiver) {
     const result = Reflect.set(target, prop, value, receiver);
 
-    const json = JSON.stringify(target);
-    localStorage.setItem(KEY, json);
+    DataSource.setLocal(KEY, target);
 
     return result;
   },
