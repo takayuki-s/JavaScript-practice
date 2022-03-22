@@ -17,6 +17,12 @@ class DataSource {
       (await DataSource.getLocal(KEY)) || (await DataSource.getRemote(KEY))
     );
   }
+  static async set(KEY, target) {
+    return (
+      DataSource.setLocal(KEY, target) ||
+      (await DataSource.setRemote(KEY, target))
+    );
+  }
   static getLocal(KEY) {
     console.log("get from local");
     const result = localStorage.getItem(KEY);
@@ -35,6 +41,12 @@ class DataSource {
     const json = await response.json();
     return json;
   }
+  static async setRemote(KEY, target) {
+    console.log("set to remote" + KEY + " ", target);
+    const response = await fetch(`../json/${KEY}.json`);
+    const json = await response.json();
+    return json;
+  }
 }
 (async function () {
   const targetObj = DataSource.get(KEY);
@@ -49,7 +61,7 @@ class DataSource {
         if (_dirty) {
           console.log("** update data **");
           _dirty = false;
-          DataSource.setLocal(KEY, target);
+          DataSource.set(KEY, target);
         }
       });
 
