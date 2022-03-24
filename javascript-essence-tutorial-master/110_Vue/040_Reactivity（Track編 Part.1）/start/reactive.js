@@ -7,6 +7,7 @@ const handler = {
       key,
       res
     );
+    track(target);
     return res;
   },
   set(target, key, value, receiver) {
@@ -17,7 +18,7 @@ const handler = {
       key,
       value
     );
-    trigger();
+    trigger(target);
     return res;
   },
 };
@@ -28,9 +29,22 @@ function reactive(target) {
 let activeEffect = null;
 function effect(fn) {
   activeEffect = fn;
+  activeEffect();
 }
 
-function trigger() {
-  activeEffect();
+const targetMap = new WeakMap();
+function track(target) {
+  console.log(
+    "%c[effect:resister]",
+    "background: blue; color: white;",
+    target,
+    activeEffect
+  );
+  targetMap.set(target, activeEffect);
+}
+
+function trigger(target) {
+  const effect = targetMap.get(target);
+  effect();
 }
 export { effect, trigger, reactive };
