@@ -4,6 +4,7 @@ const handler = {
     console.log(
       "%c[reactive:get]",
       "background: green; color: white;",
+      target,
       key,
       res
     );
@@ -15,10 +16,11 @@ const handler = {
     console.log(
       "%c[reactive:set]",
       "background: red; color: white;",
+      target,
       key,
       value
     );
-    trigger(target);
+    trigger(target, key);
     return res;
   },
 };
@@ -30,27 +32,45 @@ let activeEffect = null;
 function effect(fn) {
   activeEffect = fn;
   activeEffect();
+  activeEffect = null;
 }
 
 const targetMap = new WeakMap();
 function track(target, key) {
-  console.log(
-    "%c[effect:register]",
-    "background: blue; color: white;",
-    target,
-    activeEffect
-  );
+  if (activeEffect === null) {
+    return;
+  }
   let depsMap = targetMap.get(target);
 
   if (!depsMap) {
     targetMap.set(target, (depsMap = new Map()));
   }
 
-  depsMap.set(key, activeEffect);
+  let deps = depsMap.get(key);
+  if (!deps) {
+    depsMap.set(key, (deps = new Set()));
+  }
+  if (!deps.has(activeEffect)) {
+    console.log(
+      "%c[effect:register]",
+      "background: blue; color: white;",
+      key,
+      target,
+      activeEffect
+    );
+    deps.add(activeEffect);
+  }
 }
 
-function trigger(target) {
-  const effect = targetMap.get(target);
-  effect();
+function trigger(target, key) {
+  const depsMap = targetMap.get(target);
+  if (!depsMap) {
+    return;
+  }
+  const deps = depsMap.get(key);
+  if (!deps) {
+    return;
+  }
+  deps.forEach((effect) => effect());
 }
 export { effect, trigger, reactive };
