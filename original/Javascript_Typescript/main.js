@@ -18,3 +18,17 @@ console.log(a, b, c);
 const obj = { a: 1, b: 2, c: 3, x: 10 };
 const { x, ...props } = obj;
 console.log(x, props);
+
+const fruits = ["apple", "orange", "grape", "melon", "pineapple"];
+const filtering = (word) => {
+  return word.length > 6;
+};
+const filteredFruits = fruits.filter(filtering);
+console.log(filteredFruits);
+
+const numbersArray = [1, 4, 9, 16];
+const mapping = (x) => {
+  return x * 2;
+};
+const mappedArray = numbersArray.map(mapping);
+console.log(mappedArray);
